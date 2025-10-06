@@ -1,0 +1,80 @@
+<!--A estrutura deve conter um cabeçalho com o título da aplicação, o conteúdo principal 
+contendo as informações seguintes, e um rodapé de direitos reservados -->
+<!--Conversão de moedas: 
+1.  Um input para seleção de moeda, junto com 2 selects de seleção de moeda destino 
+e moeda final. 
+ 
+2.  Os menus de seleção de moeda devem ser carregados dinamicamente junto com a 
+página por uma requisição à API. 
+ 
+3.  Ao alterar o valor de qualquer um dos campos, o valor deve ser atualizado 
+automaticamente. 
+ 
+4.  Durante o processo de requisição, deve estar presente um ícone de carregamento 
+ou mensagem de carregamento. 
+ 
+Tabela de Cotações: 
+1.  Abaixo do conversor de moedas deve haver uma tabela de cotações das moedas 
+mais importantes em relação ao real brasilieiro, fica a seu critério quais moedas 
+comparar. 
+ 
+2.  A tabela deve ser gerada ao carregar a página de forma dinâmica 
+ 
+3.  Deve haver um botão logo abaixo para atualizar as cotas que deve buscar os dados 
+mais recentes e atualizar apropriadamente. 
+ 
+Extras: 
+ 
+1.  Previna erros possíveis da API, para caso ocorra erros de busca de dados o site se 
+comportar devidamente com mensagens personalizadas para diferentes problemas. 
+ 
+2.  Previna que o usuário coloque valores inválidos no campo de moeda, notificando o 
+mesmo quando isso acontecer.-->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>Conversor de Moedas</h1>
+    </header>
+    <main>
+        <section class="secao conversor" id="conversor">
+            <h2>Conversor de Moedas</h2>
+            <form class="formulario conversor" id="formulario-conversor">
+                <label for="valor">Valor:</label>
+                <input type="number" id="valor" name="valor" required>
+
+                <label for="de-moeda">De:</label>
+                <select id="de-moeda" name="de-moeda" required></select>
+
+                <label for="para-moeda">Para:</label>
+                <select id="para-moeda" name="para-moeda" required></select>
+
+                <button type="submit">Converter</button>
+            </form>
+            <div id="resultado-conversao"></div>
+        </section>
+
+        <section class="secao cotacoes" id="cotacoes">
+            <h2>Tabela de Cotações</h2>
+            <table id="tabela-cotacoes">
+                <thead>
+                    <tr>
+                        <th>Moeda</th>
+                        <th>Cotação (BRL)</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <button id="btn-atualizar">Atualizar Cotações</button>
+        </section>
+    </main>
+    <footer>
+        <p>Direitos reservados</p>
+    </footer>
+</body>
+</html>
