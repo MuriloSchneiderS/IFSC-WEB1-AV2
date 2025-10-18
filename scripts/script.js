@@ -32,3 +32,62 @@ mesmo quando isso acontecer.
  
 Links para requisições: 
 ●  https://api.frankfurter.app */
+const moeda_origem = document.getElementById('moeda-origem');
+const moeda_destino = document.getElementById('moeda-destino');
+const valor_origem = document.getElementById('valor-origem');
+const valor_convertido = document.getElementById('valor-convertido');
+const carregamento = document.getElementById('carregamento');
+
+const tabela_cotacoes = document.getElementById('tabela-cotacoes');
+const botao_atualizar = document.getElementById('botao-atualizar');
+
+document.addEventListener('DOMContentLoaded', () => {
+    carregarListaMoedas();
+});
+
+async function carregarListaMoedas() {//Carrega opcoes de moeda-origem e moeda-destino
+    carregamento.textContent = 'Carregando moedas...';
+    carregamento.style.display = 'block';
+    moeda_origem.disabled = true;
+    moeda_destino.disabled = true;
+
+    try {
+        const resposta = await fetch('https://api.frankfurter.app/currencies', { cache: 'no-store' });
+        if (!resposta.ok) 
+            throw new Error(`Erro: sem resposta do servidor: ${resposta.status}`);
+        const moedas = await resposta.json();
+        const pares = Object.entries(moedas).sort((a, b) => a[0].localeCompare(b[0]));
+
+        popularSelect(moeda_origem, pares);
+        popularSelect(moeda_destino, pares);
+
+        if ([...moeda_origem.options].some(o => o.value === 'BRL')) 
+            moeda_origem.value = 'BRL';
+        else 
+            moeda_origem.selectedIndex = 0;
+        //moeda origem padrao definida como BRL se existir na lista, senao primeira da lista
+        if ([...moeda_destino.options].some(o => o.value === 'USD')) 
+            moeda_destino.value = 'USD';
+        else 
+            moeda_destino.selectedIndex = 0;
+        //moeda destino padrao definida como USD se existir na lista, senao primeira da lista
+
+        carregamento.textContent = '';
+        carregamento.style.display = 'none';
+    } catch (erro) {
+        console.error(erro);
+        carregamento.textContent = 'Falha ao carregar moedas. Verifique sua conexão e reinicie a página.';
+    } finally {
+        moeda_origem.disabled = false;
+        moeda_destino.disabled = false;
+    }
+}
+function popularSelect(selectEl, pares) {
+    selectEl.innerHTML = '';
+    pares.forEach(([codigo, nome]) => {
+        const opcao = document.createElement('option');
+        opcao.value = codigo;
+        opcao.textContent = `${codigo} — ${nome}`;
+        selectEl.appendChild(opcao);
+    });
+}

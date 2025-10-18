@@ -35,28 +35,35 @@ mesmo quando isso acontecer.-->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/style.css">
+    <script src="../scripts/script.js" defer></script>
     <title>Document</title>
 </head>
 <body>
     <header>
         <h1>Conversor de Moedas</h1>
     </header>
+
     <main>
         <section class="secao conversor" id="conversor">
             <h2>Conversor de Moedas</h2>
             <form class="formulario conversor" id="formulario-conversor">
-                <label for="valor">Valor:</label>
-                <input type="number" id="valor" name="valor" required>
+                <label for="valor-origem">Valor:</label>
+                <input type="number" id="valor-origem" name="valor-origem" min="0" required>
 
-                <label for="de-moeda">De:</label>
-                <select id="de-moeda" name="de-moeda" required></select>
+                <label for="moeda-origem">De:</label>
+                <select id="moeda-origem" name="moeda-origem" required></select>
 
-                <label for="para-moeda">Para:</label>
-                <select id="para-moeda" name="para-moeda" required></select>
+                <label for="moeda-destino">Para:</label>
+                <select id="moeda-destino" name="moeda-destino" required></select>
 
                 <button type="submit">Converter</button>
             </form>
-            <div id="resultado-conversao"></div>
+            <div id="resultado-conversao">
+                <div id="carregamento" style="display: none;"></div>
+                <label for="valor-convertido">Resultado: </label>
+                <input type="text" id="valor-convertido" name="valor-convertido" readonly>
+            </div>
         </section>
 
         <section class="secao cotacoes" id="cotacoes">
@@ -73,6 +80,7 @@ mesmo quando isso acontecer.-->
             <button id="btn-atualizar">Atualizar Cotações</button>
         </section>
     </main>
+
     <footer>
         <p>Direitos reservados</p>
     </footer>
