@@ -1,3 +1,134 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #3b3b3b;
+    color:antiquewhite;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.cabecalho {
+    background: linear-gradient(to bottom, #4CAF50 0%, #2f6c31, transparent 100%);
+    color: antiquewhite;
+    padding: 10px 0;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+}
+.conteudo-principal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+.artigo-moedas {
+    display: grid;
+    gap: 20px;
+    width: 100%;
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 40px;
+    background-color: white;
+    color: #2b2b2b;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.secao {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+.secao h2{
+    margin: 10px 0;
+}
+.secao button{
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: 2px solid #4CAF50;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    transition: all 0.5s ease;
+}
+.secao button:hover{
+    background-color: transparent;
+    color: #4CAF50;
+    border: 2px solid #4CAF50;
+}
+.secao button:disabled{
+    background-color: #a5d6a7;
+    border: 2px solid grey;
+    color: grey;
+    cursor: not-allowed;
+}
+
+.conversor{
+    gap: 10px;
+}
+.formulario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 55%;
+    min-width: 300px;
+}
+.formulario div{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 5px;
+}
+.formulario input{
+    padding: 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.formulario select{
+    padding: 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.tabela{
+    border-collapse: collapse;
+    margin: 0 10px 15px;
+    width: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15)
+}
+.tabela thead {
+    background-color: #4CAF50;
+    color: white;
+}
+.tabela th, .tabela td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.rodape {
+     background: linear-gradient(to top, #4CAF50 0%, #2f6c31, transparent 100%);
+    color: antiquewhite;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+.rodape p {
+    margin: 0;
+}
+
 /*Para questões visuais é necessário ter no mínimo os seguintes requisitos CSS. 
 a.  Tabelas e o conversor de moedas centralizadas 
 b.  Cores de fundo e fontes diferentes 
@@ -6,11 +137,3 @@ aparência para mostrar que estão bloqueados
 d.  Faça sua aplicação ser responsiva a diferentes tipos de tela. 
  
 2.  Fica permitido o uso de bootstrap assim como CSS puro*/
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
-    margin: 0;
-    padding: 0;
-}

@@ -2,7 +2,6 @@ const moeda_origem = document.getElementById('moeda-origem');
 const moeda_destino = document.getElementById('moeda-destino');
 const valor_origem = document.getElementById('valor-origem');
 const valor_convertido = document.getElementById('valor-convertido');
-const carregamento_conversor = document.getElementById('carregamento-conversor');
 const botao_converter = document.getElementById('btn-converter');
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -15,9 +14,9 @@ botao_converter.addEventListener('click', (e) => {
 
 
 async function carregarListaMoedas() {//Carrega opcoes de moeda-origem e moeda-destino
-    carregamento_conversor.textContent = 'Carregando moedas...';
-    carregamento_conversor.style.display = 'block';
+    moeda_origem.textContent = 'Carregando moedas...';
     moeda_origem.disabled = true;
+    moeda_destino.textContent = 'Carregando moedas...';
     moeda_destino.disabled = true;
 
     try {
@@ -40,12 +39,10 @@ async function carregarListaMoedas() {//Carrega opcoes de moeda-origem e moeda-d
         else 
             moeda_destino.selectedIndex = 0;
         //moeda destino padrao definida como USD se existir na lista, senao primeira da lista
-
-        carregamento_conversor.textContent = '';
-        carregamento_conversor.style.display = 'none';
     } catch (erro) {
         console.error(erro);
-        carregamento_conversor.textContent = 'Falha ao carregar moedas. Verifique sua conexão e reinicie a página.';
+        moeda_origem.textContent = 'Erro ao carregar moedas';
+        moeda_destino.textContent = 'Erro ao carregar moedas';
     } finally {
         moeda_origem.disabled = false;
         moeda_destino.disabled = false;
@@ -69,8 +66,8 @@ async function converterMoeda() {
         valor_convertido.value = 'Valor inválido';
         return;
     }
-    carregamento_conversor.textContent = 'Convertendo...';
-    carregamento_conversor.style.display = 'block';
+    botao_converter.textContent = 'Convertendo...';
+    botao_converter.disabled = true;
     try {
         const resposta = await fetch(`https://api.frankfurter.app/latest?amount=${valor}&from=${origem}&to=${destino}`, { cache: 'no-store' });
         if (!resposta.ok)
@@ -82,8 +79,8 @@ async function converterMoeda() {
         console.error(erro);
         valor_convertido.value = 'Erro na conversão';
     } finally {
-        carregamento_conversor.textContent = '';
-        carregamento_conversor.style.display = 'none';
+        botao_converter.textContent = 'Converter';
+        botao_converter.disabled = false;
     }
 }
 

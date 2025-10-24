@@ -6,70 +6,76 @@
     <link rel="stylesheet" href="../styles/style.css">
     <script src="../scripts/script-conversor.js" defer></script>
     <script src="../scripts/script-cotacoes.js" defer></script>
-    <title>Document</title>
+    <title>Conversor de moedas</title>
 </head>
 <body>
-    <header>
+    <header class="cabecalho">
         <h1>Conversor de Moedas</h1>
     </header>
     
-    <main>
-        <section class="secao conversor" id="conversor">
-            <h2>Conversor de Moedas</h2>
-            <form class="formulario conversor" id="formulario-conversor">
-                <label for="valor-origem">Valor:</label>
-                <input type="number" id="valor-origem" name="valor-origem" min="0" required>
+    <main class="conteudo-principal">
+        <article class="artigo-moedas">
+            <section class="secao conversor" id="conversor">
+                <h2>Conversor de Moedas</h2>
+                <form class="formulario conversor" id="formulario-conversor">
+                    <div>
+                        <label for="valor-origem">Valor:</label>
+                        <input type="number" id="valor-origem" name="valor-origem" min="0" required>
+                    </div>
+                    <div>
+                        <label for="moeda-origem">De:</label>
+                        <select id="moeda-origem" name="moeda-origem" required></select>
+                    </div>
+                    <div>
+                        <label for="moeda-destino">Para:</label>
+                        <select id="moeda-destino" name="moeda-destino" required></select>
+                    </div>
+                    <button type="submit" id="btn-converter">Converter</button>
+                </form>
                 
-                <label for="moeda-origem">De:</label>
-                <select id="moeda-origem" name="moeda-origem" required></select>
                 
-                <label for="moeda-destino">Para:</label>
-                <select id="moeda-destino" name="moeda-destino" required></select>
-            </form>
+                <div id="resultado-conversao" class="formulario">
+                    <div>
+                        <label for="valor-convertido">Resultado: </label>
+                        <input type="text" id="valor-convertido" name="valor-convertido" readonly>
+                    </div>
+                </div>
+            </section>
             
-            <button type="submit" id="btn-converter">Converter</button>
-            
-            <div id="resultado-conversao">
-                <div id="carregamento-conversor"></div>
-                <label for="valor-convertido">Resultado: </label>
-                <input type="text" id="valor-convertido" name="valor-convertido" readonly>
-            </div>
-        </section>
-        
-        <section class="secao cotacoes" id="cotacoes">
-            <h2>Tabela de Cotações</h2>
-            <h3 id="carregamento-cotacoes"></h3>
-            <table id="tabela-cotacoes">
-                <thead>
-                    <tr>
-                        <th>Moeda</th>
-                        <th>Cotação</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Real (R$)</td>
-                        <td id="real">R$1,00</td>
-                    </tr>
-                    <tr>
-                        <td>Dólar (USD)</td>
-                        <td>R$<span id="dolar"></span></td>
-                    </tr>
-                    <tr>
-                        <td>Euro (€)</td>
-                        <td>R$<span id="euro"></span></td>
-                    </tr>
-                    <tr>
-                        <td>Iene (¥)</td>
-                        <td>R$<span id="iene"></span></td>
-                    </tr>
-                </tbody>
-            </table>
-            <button id="btn-atualizar">Atualizar Cotações</button>
-        </section>
+            <section class="secao cotacoes" id="cotacoes">
+                <h2>Tabela de Cotações</h2>
+                <table id="tabela-cotacoes" class="tabela cotacoes">
+                    <thead>
+                        <tr>
+                            <th>Moeda</th>
+                            <th>Cotação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>(R$1) Real</td>
+                            <td id="real">R$1,00</td>
+                        </tr>
+                        <tr>
+                            <td>($1) USDólar</td>
+                            <td>R$<span id="dolar"></span></td>
+                        </tr>
+                        <tr>
+                            <td>(€1) Euro</td>
+                            <td>R$<span id="euro"></span></td>
+                        </tr>
+                        <tr>
+                            <td>(¥1) Iene</td>
+                            <td>R$<span id="iene"></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button id="btn-atualizar">Atualizar Cotações</button>
+            </section>
+        </article>
     </main>
     
-    <footer>
+    <footer class="rodape">
         <p>Direitos reservados</p>
     </footer>
 </body>

@@ -1,5 +1,4 @@
 const tabela_cotacoes = document.getElementById('tabela-cotacoes');
-const carregamento_cotacoes = document.getElementById('carregamento-cotacoes');
 const botao_atualizar = document.createElement('btn-atualizar');
 const dolar = document.getElementById('dolar');
 const euro = document.getElementById('euro');
@@ -13,8 +12,9 @@ botao_atualizar.addEventListener('click', () => {
 });
 
 async function atualizarCotacoes() {
-    carregamento_cotacoes.textContent = 'Carregando cotações...';
     tabela_cotacoes.style.display = 'none';
+    botao_atualizar.textContent = 'Atualizando Cotações...';
+    botao_atualizar.disabled = true;
     try {
         const resposta = await fetch('https://api.frankfurter.app/latest?from=BRL&to=USD,EUR,JPY', { cache: 'no-store' });
         if (!resposta.ok) 
@@ -24,11 +24,13 @@ async function atualizarCotacoes() {
         dolar.textContent = (1 / taxas.USD).toFixed(2);
         euro.textContent = (1 / taxas.EUR).toFixed(2);
         iene.textContent = (1 / taxas.JPY).toFixed(4);
-        carregamento_cotacoes.textContent = '';
+        botao_atualizar.textContent = 'Atualizar Cotações';
         tabela_cotacoes.style.display = 'table';
     } catch (erro) {
         console.error(erro);
-        carregamento_cotacoes.textContent = 'Falha ao carregar cotações. Verifique sua conexão e tente novamente.';
+        botao_atualizar.textContent = 'Erro ao atualizar cotações...';
+    } finally {
+        botao_atualizar.disabled = false;
     }
 }
 /*Tabela de Cotações: 
